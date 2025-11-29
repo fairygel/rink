@@ -24,13 +24,13 @@ class UploadedText extends StatefulWidget {
 }
 
 class _UploadedTextState extends State<UploadedText> {
-  String uploadedText = '';
+  String uploadedText = 'Click \'Upload\' button to upload a text file.';
 
   void updateText() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['txt'],
-      withData: true
+      withData: true,
     );
     setState(() {
       if (result == null) return;
@@ -44,10 +44,14 @@ class _UploadedTextState extends State<UploadedText> {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(16.0),
-        child: Text(
-          uploadedText,
-          style: const TextStyle(fontSize: 16.0),
-          textAlign: TextAlign.justify,
+        child: ListView(
+          children: [
+            Text(
+              uploadedText,
+              style: const TextStyle(fontSize: 16.0),
+              textAlign: TextAlign.justify,
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
